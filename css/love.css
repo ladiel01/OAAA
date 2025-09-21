@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+:root{
+  --bg-gradient: linear-gradient(to top, #ffafbd, #ffc3a0);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  background: var(--bg-gradient);
+  color: #333;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  padding: 1.6rem 1rem;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  margin: 0;
+}
+
+header p {
+  font-size: 1rem;
+  color: #f8f8f8;
+  margin-top: 0.4rem;
+}
+
+/* --- Layout con columnas laterales --- */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.6rem;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 1rem;
+  width: 90%;
+  max-width: 1100px;
+  align-items: start;
+}
+
+/* Lados (imágenes) */
+.lado {
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding-top: 0.6rem;
+}
+
+.lado img{
+  max-width: 100%;
+  width: 90%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.lado.left img { animation: slideInLeft 700ms ease-out forwards; }
+.lado.right img { animation: slideInRight 700ms ease-out forwards; }
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px) translateY(20px); }
+  to   { opacity: 1; transform: translateX(0) translateY(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px) translateY(20px); }
+  to   { opacity: 1; transform: translateX(0) translateY(0); }
+}
+
+/* Poema centrado */
+.poema {
+  background: linear-gradient(135deg, rgba(255, 99, 132, 0.9), rgba(255, 159, 64, 0.9));
+  padding: 1.8rem;
+  border-radius: 22px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  font-size: 1.25rem;
+  color: #fff;
+  line-height: 1.7;
+  backdrop-filter: blur(5px);
+}
+
+/* Botones */
+.botones {
+  margin: 1.6rem 0 2rem;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  gap:0.6rem;
+  flex-wrap:wrap;
+}
+
+button {
+  padding: 0.9rem 1.4rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.2s;
+}
+
+.btn-play { background: #42a5f5; color: #fff; }
+.btn-si   { background: #ff6f61; color: #fff; }
+.btn-no   { background: #fbc02d; color: #333; }
+
+button:hover { transform: translateY(-4px); }
+
+/* Aside transparente debajo de los botones */
+.aside-poema {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 2rem auto;
+  min-height: 150px;
+}
+
+/* 🌻 animación girasoles */
+.contenedor-girasoles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.girasol {
+  position: absolute;
+  top: -50px;
+  font-size: 2rem;
+  animation: caer 6s linear forwards;
+}
+
+@keyframes caer {
+  0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+  100%{ transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; gap: 1rem; padding: 0 1rem; }
+  .lado img { width: 70%; }
+  .poema { width: 100%; font-size: 1.15rem; }
+}
